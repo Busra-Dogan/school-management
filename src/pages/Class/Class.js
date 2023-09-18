@@ -1,38 +1,113 @@
-import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import { Button, TextField } from '@mui/material';
-import Autocomplete from '@mui/material/Autocomplete';
-import Typography from '@mui/material/Typography';
+import React, { useState, useEffect } from "react";
+import { Box } from "@mui/material";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGridPro } from '@mui/x-data-grid-pro';
+import Header from "../../components/Header";
+import { useTheme } from "@mui/material";
+import ClassService from "../../services/ClassService";
+import axios from "axios";
 
-import { styled } from '@mui/material/styles';
+const Class = () => {
+  const [classes, setClasses] = useState([]);
+  const [cancelToken, setCancelToken] = useState(null);
 
-export default function ClassesList() {
+  useEffect(() => {
+    if (cancelToken) {
+      cancelToken.cancel("Operation canceled by the user.");
+    }
+    const newCancelToken = axios.CancelToken.source();
+    setCancelToken(newCancelToken);
 
-  const top100Films = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-    { label: '12 Angry Men', year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: 'Pulp Fiction', year: 1994 }
-  ]
+    let productService = new ClassService();
+    productService
+      .getAllClasses()
+      .then((result) => setClasses(result.data.data));
+    console.log(classes);
+    return () => {
+      if (newCancelToken) {
+        newCancelToken.cancel("Component unmounted.");
+      }
+    };
+  }, []);
+
+  const columns = [
+    { field: "id", headerName: "ID", flex: 0.2 },
+    { field: "className", headerName: "Class Name", flex: 0.29 },
+    {
+      field: "quota",
+      headerName: "Quota",
+      type: "number",
+      flex: 0.5,
+      headerAlign: "center",
+      align: "center",
+      cellClassName: "name-column--cell",
+    },
+    {
+      field: "schoolName",
+      headerName: "SchoolName",
+      headerAlign: "left",
+      align: "left",
+      flex: 1,
+    },
+    {
+      field: "whichGrade",
+      headerName: "WhichGrade",
+      headerAlign: "center",
+      align: "center",
+      flex: 0.25,
+    },
+    {
+      field: "systemDate",
+      headerName: "SystemDate",
+      type: "datetime",
+      flex: 0.5,
+    },
+  ];
   return (
-    <Grid container spacing={3}>
-      <Grid item xs justifyContent="center">
-        <Typography variant="h2" component="h2">Sınıflar</Typography>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 300, marginLeft:30 }}
-          renderInput={(params) => <TextField {...params} label="Movie" />}
+    <Box m="20px" width="1650px">
+      <Header
+        title="ALL CLASSES"
+        subtitle="List of All Classes In the School"
+      />
+      <Box
+        p="20px 10px 20px 10px"
+        height="75vh"
+        sx={{
+          "& .MuiDataGrid-root": {
+            border: "none",
+          },
+          "& .MuiDataGrid-cell": {
+            borderBottom: "none",
+          },
+          "& .name-column--cell": {
+            color: "#94e2cd",
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            backgroundColor: "#a4a9fc",
+            borderBottom: "none",
+          },
+          "& .MuiDataGrid-virtualScroller": {
+            backgroundColor: "#f2f0f0",
+          },
+          "& .MuiDataGrid-footerContainer": {
+            borderTop: "none",
+            backgroundColor: "#a4a9fc",
+          },
+          "& .MuiCheckbox-root": {
+            color: `#1e5245 !important`,
+          },
+          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+            color: `#141414 !important`,
+          },
+        }}
+      >
+        <DataGrid
+          rows={classes}
+          columns={columns}
         />
-      </Grid>
-      <Grid item xs={6}>
-        <Typography variant="h1" component="h2">h1. Heading</Typography>
-      </Grid><Grid item xs>
-      </Grid>
-    </Grid>
+      </Box>
+    </Box>
   );
-}
+};
+
+export default Class;

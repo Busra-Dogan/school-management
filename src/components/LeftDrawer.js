@@ -1,56 +1,54 @@
-import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { Link } from "react-router-dom";
 import { IconButton, Typography, useTheme, MenuItem } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
-  const theme = useTheme();
   return (
-    <MenuItem>
-      <ListItemIcon>{icon}</ListItemIcon>
-      <ListItem
-        active={selected === title}
-        style={{
-          color: "#e0e0e0",
-        }}
-        onClick={() => setSelected(title)}
-      >
-        <Typography>{title}</Typography>
-        <Link to={to} />
+    <Link to={to}>
+      <ListItem>
+        <ListItemButton
+          style={{
+            color: "#e0e0e0",
+          }}
+          onClick={() => setSelected(title)}
+        >
+          <ListItemIcon>{icon}</ListItemIcon>
+          <ListItemText>{title}</ListItemText>
+        </ListItemButton>
       </ListItem>
-    </MenuItem>
+    </Link>
   );
 };
 
 const LeftDrawer = () => {
+  const [selected, setSelected] = useState("Dashboard");
   return (
     <Drawer
+      sx={{
+        width: 220,
+        "& .MuiDrawer-paper": {
+          width: 220,
+          boxSizing: "border-box",
+        },
+      }}
       anchor="left"
       open={true}
       variant={"persistent"}
-      PaperProps={{ sx: { backgroundColor: "#1F2A40", width: "300px" } }}
+      PaperProps={{ sx: { backgroundColor: "#1F2A40" } }}
     >
       <Box
         display="flex"
@@ -80,12 +78,7 @@ const LeftDrawer = () => {
           />
         </Box>
         <Box textAlign="center">
-          <Typography
-            variant="h4"
-            color="#e0e0e0"
-            fontWeight="bold"
-            sx={{ m: "10px 0 0 0" }}
-          >
+          <Typography variant="h4" color="#e0e0e0" fontWeight="bold">
             Ed Roh
           </Typography>
           <Typography variant="h5" color="#4cceac">
@@ -93,32 +86,39 @@ const LeftDrawer = () => {
           </Typography>
         </Box>
       </Box>
-      <Box sx={{ width: 250 }} role="persistent">
-        <Box paddingLeft="10%">
+      <Box role="persistent">
+        <Box>
           <Item title="Dashboard" to="/" icon={<HomeOutlinedIcon />} />
-
-          <Typography
-            variant="h6"
-            color="#a3a3a3"
-            sx={{ m: "15px 0 5px 20px" }}
-          >
-            Students
-          </Typography>
-          <Item title="New Student" to="/team" icon={<PeopleOutlinedIcon />} />
-
+          <ListItem>
+            <ListItemText>
+              <Typography variant="h7" color="#a3a3a3">
+                Students
+              </Typography>
+            </ListItemText>
+          </ListItem>
+          <Item
+            title="New Student"
+            to="/student/studentAdd"
+            icon={<PeopleOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
           <Item
             title="Notes"
             to="/contacts"
-            icon={<ContactsOutlinedIcon />}
+            icon={<ContactsOutlinedIcon color="#4cceac" />}
+            selected={selected}
+            setSelected={setSelected}
           />
-        <Divider />
-          <Typography
-            variant="h6"
-            color="#a3a3a3"
-            sx={{ m: "15px 0 5px 20px" }}
-          >
-            Teachers
-          </Typography>
+
+          <Divider />
+          <ListItem>
+            <ListItemText>
+              <Typography variant="h7" color="#a3a3a3">
+                Teachers
+              </Typography>
+            </ListItemText>
+          </ListItem>
           <Item title="New Teacher" to="/form" icon={<PersonOutlinedIcon />} />
           <Item
             title="Calendar"
@@ -127,18 +127,27 @@ const LeftDrawer = () => {
           />
 
           <Divider />
-          
-          <Typography
-            variant="h6"
-            color="#a3a3a3"
-            sx={{ m: "15px 0 5px 20px" }}
-          >
-            Classes
-          </Typography>
+
+          <ListItem>
+            <ListItemText>
+              <Typography variant="h7" color="#a3a3a3">
+                Classes
+              </Typography>
+            </ListItemText>
+          </ListItem>
           <Item
-            title="Syllabus"
-            to="/pie"
+            title="Class Add"
+            to="/class/classAdd"
             icon={<PieChartOutlineOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
+          />
+          <Item
+            title="Class List"
+            to="/class"
+            icon={<PieChartOutlineOutlinedIcon />}
+            selected={selected}
+            setSelected={setSelected}
           />
         </Box>
       </Box>
