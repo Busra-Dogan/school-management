@@ -7,11 +7,11 @@ const Header = ({ title, subtitle }) => {
         variant="h2"
         color="#e0e0e0"
         fontWeight="bold"
-        sx={{ m: "80px 20px 5px 10px" }}
+        sx={{ m: "80px 20px 5px 5px" }}
       >
         {title}
       </Typography>
-      <Typography variant="h5" color="#4cceac" sx={{ m: "0 20px 5px 10px" }}>
+      <Typography variant="h5" color="#4cceac" sx={{ m: "0 20px 5px 5px" }}>
         {subtitle}
       </Typography>
     </Box>

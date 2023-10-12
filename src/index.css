@@ -6,7 +6,6 @@ body,
 #root,
 .app,
 .content {
-  float: left;
   height: 100%;
   width: 100%;
   font-family: "Roboto Condensed", sans-serif;
@@ -16,6 +15,12 @@ body,
   display: flex;
   position: relative;
   clear: both;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ::-webkit-scrollbar {

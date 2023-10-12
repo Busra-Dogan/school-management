@@ -4,9 +4,10 @@ export const BASE_URL = 'https://localhost:7185/';
 
 export const ENDPOINTS = {
     Class: 'class',
+    Student: 'Student'
 }
 
-export const createAPIEndpoint = (endpoint, spesificurl) => {
+export const createAPIEndpoint = (endpoint, spesificurl, data) => {
 
     let url = BASE_URL + 'api/' + endpoint + '/' + spesificurl;
 

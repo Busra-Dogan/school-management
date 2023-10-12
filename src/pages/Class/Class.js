@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { DataGridPro } from '@mui/x-data-grid-pro';
 import Header from "../../components/Header";
@@ -64,48 +64,48 @@ const Class = () => {
     },
   ];
   return (
-    <Box m="20px" width="1650px">
+    <Box m="20px" width={1500} height={1000}>
       <Header
         title="ALL CLASSES"
         subtitle="List of All Classes In the School"
       />
-      <Box
-        p="20px 10px 20px 10px"
-        height="75vh"
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-          },
-          "& .name-column--cell": {
-            color: "#94e2cd",
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: "#a4a9fc",
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: "#f2f0f0",
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: "#a4a9fc",
-          },
-          "& .MuiCheckbox-root": {
-            color: `#1e5245 !important`,
-          },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `#141414 !important`,
-          },
-        }}
+      <Grid container
       >
         <DataGrid
           rows={classes}
           columns={columns}
+          pageSize={5}
+          sx={{
+            "& .MuiDataGrid-root": {
+              border: "none",
+              rowsPerPageOptions:[5, 10, 20]
+            },
+            "& .MuiDataGrid-cell": {
+              borderBottom: "none",
+            },
+            "& .name-column--cell": {
+              color: "#94e2cd",
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: "#a4a9fc",
+              borderBottom: "none",
+            },
+            "& .MuiDataGrid-virtualScroller": {
+              backgroundColor: "#f2f0f0",
+            },
+            "& .MuiDataGrid-footerContainer": {
+              borderTop: "none",
+              backgroundColor: "#a4a9fc",
+            },
+            "& .MuiCheckbox-root": {
+              color: `#1e5245 !important`,
+            },
+            "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+              color: `#141414 !important`,
+            },
+          }}
         />
-      </Box>
+      </Grid>
     </Box>
   );
 };
