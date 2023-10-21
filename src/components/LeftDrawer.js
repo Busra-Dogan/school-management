@@ -21,9 +21,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-
-
+import AppBar from "@mui/material/AppBar";
 
 const LeftDrawer = () => {
   const drawerWidth = 240;
@@ -41,20 +39,25 @@ const LeftDrawer = () => {
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
   const [selected, setSelected] = useState("Dashboard");
+
   return (
-    <Box >
-      <MuiAppBar position="fixed" open={open} sx={{ backgroundColor: "#1F2A40" }}>
+    <Box sx={{ flexGrow: 1 }}  >
+      {/* <Box width={'100%'}>
+      <AppBar position="static" sx={{ backgroundColor: "#1F2A40"}} >
         <Toolbar>
           <IconButton
             color="success"
             onClick={handleDrawerOpen}
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            aria-label="open drawer"
           >
             <MenuOutlinedIcon />
           </IconButton>
         </Toolbar>
-      </MuiAppBar>
+      </AppBar>
+      </Box> */}
+
       <ClickAwayListener
         mouseEvent="onMouseDown"
         touchEvent="onTouchStart"
@@ -74,9 +77,9 @@ const LeftDrawer = () => {
           PaperProps={{ sx: { backgroundColor: "#1F2A40" } }}
         >
           <DrawerHeader>
-            <IconButton color="success" onClick={handleDrawerClose} >
+            {/* <IconButton color="success" onClick={handleDrawerClose} >
               <MenuOutlinedIcon />
-            </IconButton>
+            </IconButton> */}
           </DrawerHeader>
           <Box mb="25px">
             <Box display="flex" justifyContent="center" alignItems="center">
@@ -99,12 +102,12 @@ const LeftDrawer = () => {
           </Box>
           <Box role="persistent">
             <Box>
-              <MenuItem
+              {/* <MenuItem
                 title="Dashboard"
                 to="/"
                 icon={<HomeOutlinedIcon />}
                 selected={selected}
-                setSelected={setSelected} />
+                setSelected={setSelected} /> */}
               <ListItem>
                 <ListItemText>
                   <Typography variant="h7" color="#a3a3a3">
@@ -113,16 +116,23 @@ const LeftDrawer = () => {
                 </ListItemText>
               </ListItem>
               <MenuItem
-                title="Öğrenci Listesi"
-                to="/contacts"
-                icon={<ContactsOutlinedIcon color="#4cceac" />}
+                title="Öğrenciler"
+                to="/student"
+                icon={<ContactsOutlinedIcon color="success" />}
                 selected={selected}
                 setSelected={setSelected}
               />
               <MenuItem
                 title="Öğrenci Ekle"
                 to="/student/studentAdd"
-                icon={<PeopleOutlinedIcon color="inherit" />}
+                icon={<PeopleOutlinedIcon color="success" />}
+                selected={selected}
+                setSelected={setSelected}
+              />
+              <MenuItem
+                title="Not Girişi"
+                to="/student/studentAdd"
+                icon={<PeopleOutlinedIcon color="success" />}
                 selected={selected}
                 setSelected={setSelected}
               />
@@ -136,7 +146,7 @@ const LeftDrawer = () => {
                 </ListItemText>
               </ListItem>
               <MenuItem
-                title="Öğretmen Listesi"
+                title="Öğretmenler"
                 to="/teacher"
                 icon={<PersonOutlinedIcon />}
                 selected={selected}

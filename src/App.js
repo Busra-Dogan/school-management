@@ -17,6 +17,8 @@ import FolderIcon from '@mui/icons-material/Folder';
 import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import StudentDetail from "./pages/Student/StudentDetail";
+import StudentLessonNotes from "./pages/Student/StudentLessonNotes";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -35,6 +37,10 @@ function App() {
             <Route path="/student/studentAdd" element={<StudentAdd />} />
             <Route path="/teacher" element={<Teacher />} />
             <Route path="/teacher/teacherAdd" element={<TeacherAdd />} />
+            <Route path="/studentDetail" element={<StudentDetail />} />
+            <Route path="/studentLessonNotes" element={<StudentLessonNotes />} />
+
+
           </Routes>
         </main>
       </div>
