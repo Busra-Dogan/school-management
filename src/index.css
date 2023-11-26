@@ -1,25 +1,23 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap");
 
 html,
 body,
 #root,
 .app,
 .content {
-  height: 100%;
-  width: 100%;
   font-family: "Roboto Condensed", sans-serif;
 }
 
 .app {
   display: flex;
-  position: relative;
-  clear: both;
 }
 
 .content {
   display: flex;
-  align-items: left;
+}
+
+.navigation {
+  justify-content: center;
 }
 
 ::-webkit-scrollbar {
@@ -39,4 +37,8 @@ body,
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.cell {
+  background-color: white;
 }

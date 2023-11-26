@@ -1,23 +1,25 @@
-import { ENDPOINTS, createAPIEndpoint } from "."
+import { ENDPOINTS, createAPIEndpoint } from ".";
 
 export default class StudentService {
-    getAllStudents() {
-        return createAPIEndpoint(ENDPOINTS.Student, "getall").fetch();
-    }
+  getAllStudents() {
+    return createAPIEndpoint(ENDPOINTS.Student, "getall").fetch();
+  }
 
-    deleteStudent = (id) => {
-        return createAPIEndpoint(ENDPOINTS.Class, "deleteClass").delete(id);
-    }
+  deleteStudent = (id) => {
+    return createAPIEndpoint(ENDPOINTS.Class, "deleteClass").delete(id);
+  };
 
-    AddStudent = (contract) => {
-        return createAPIEndpoint(ENDPOINTS.Student, "addStudent").post(contract);
-    }
+  AddStudent = (contract) => {
+    return createAPIEndpoint(ENDPOINTS.Student, "addStudent").post(contract);
+  };
 
-    GetStudentById = (id) => {
-        return createAPIEndpoint(ENDPOINTS.Student, "getStudentById").fetchById(id);
-    }
+  GetStudentById = (id) => {
+    return createAPIEndpoint(ENDPOINTS.Student, "getStudentById").fetchById(id);
+  };
 
-    UpdateStudent = (contract) => {
-        return createAPIEndpoint(ENDPOINTS.Student, "updateStudentInfo").put(contract);
-    }
+  UpdateStudent = (contract) => {
+    return createAPIEndpoint(ENDPOINTS.Student, "updateStudentInfo").put(
+      contract
+    );
+  };
 }

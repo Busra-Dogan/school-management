@@ -15,24 +15,24 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MenuItem from "./MenuItem";
-import { styled } from '@mui/material/styles';
-import * as React from 'react';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Toolbar from '@mui/material/Toolbar';
-import MenuIcon from '@mui/icons-material/Menu';
+import { styled } from "@mui/material/styles";
+import * as React from "react";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Toolbar from "@mui/material/Toolbar";
+import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
 
 const LeftDrawer = () => {
   const drawerWidth = 240;
 
-  const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
+  const DrawerHeader = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   }));
 
   const [open, setOpen] = React.useState(true);
@@ -41,7 +41,7 @@ const LeftDrawer = () => {
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <Box sx={{ flexGrow: 1 }}  >
+    <Box sx={{ flexGrow: 1 }}>
       {/* <Box width={'100%'}>
       <AppBar position="static" sx={{ backgroundColor: "#1F2A40"}} >
         <Toolbar>
@@ -129,35 +129,6 @@ const LeftDrawer = () => {
                 selected={selected}
                 setSelected={setSelected}
               />
-              <MenuItem
-                title="Not Girişi"
-                to="/student/studentAdd"
-                icon={<PeopleOutlinedIcon color="success" />}
-                selected={selected}
-                setSelected={setSelected}
-              />
-              <Divider />
-
-              <ListItem>
-                <ListItemText>
-                  <Typography variant="h7" color="#a3a3a3">
-                    Öğretmen
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-              <MenuItem
-                title="Öğretmenler"
-                to="/teacher"
-                icon={<PersonOutlinedIcon />}
-                selected={selected}
-                setSelected={setSelected} />
-              <MenuItem
-                title="Öğretmen Ekle"
-                to="/teacher/teacherAdd"
-                icon={<CalendarTodayOutlinedIcon />}
-                selected={selected}
-                setSelected={setSelected}
-              />
               <Divider />
 
               <ListItem>
@@ -167,13 +138,6 @@ const LeftDrawer = () => {
                   </Typography>
                 </ListItemText>
               </ListItem>
-              <MenuItem
-                title="Sınıf Ekle"
-                to="/class/classAdd"
-                icon={<PieChartOutlineOutlinedIcon />}
-                selected={selected}
-                setSelected={setSelected}
-              />
               <MenuItem
                 title="Sınıf Listesi"
                 to="/class"

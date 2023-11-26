@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid, Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { DataGridPro } from '@mui/x-data-grid-pro';
+import { DataGridPro } from "@mui/x-data-grid-pro";
 import Header from "../../components/Header";
 import { useTheme, ThemeProvider, createTheme } from "@mui/material";
 import ClassService from "../../services/ClassService";
 import axios from "axios";
 import StudentService from "../../services/StudentService";
-import dayjs from 'dayjs';
-import Stack from '@mui/material/Stack';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import Alert from '@mui/material/Alert';
-import Collapse from '@mui/material/Collapse';
+import dayjs from "dayjs";
+import Stack from "@mui/material/Stack";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import Collapse from "@mui/material/Collapse";
 
 const Student = () => {
   const [students, setStudents] = useState([]);
@@ -55,18 +55,8 @@ const Student = () => {
       field: "birthDate",
       headerName: "Doğum Tarihi",
       headerAlign: "left",
-      valueFormatter: (params) => dayjs(params.value).format('DD/MM/YYYY'),
+      valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY"),
       align: "left",
-      flex: 0.5,
-    },
-    {
-      field: "motherName",
-      headerName: "Anne Adı",
-      flex: 0.5,
-    },
-    {
-      field: "fatherName",
-      headerName: "Baba Adı",
       flex: 0.5,
     },
     {
@@ -80,25 +70,15 @@ const Student = () => {
       flex: 0.75,
     },
     {
-      field: "address",
-      headerName: "Adres",
-      flex: 1,
-    },
-    {
       field: "parentPhoneNumber",
       headerName: "Veli Telefon Numarası",
       flex: 0.5,
     },
     {
-      field: "classId",
-      headerName: "Sınıfı",
-      flex: 0.25,
-    },
-    {
       field: "systemDate",
-      headerName: "SystemDate",
+      headerName: "Kayıt Tarihi",
       type: "date-",
-      valueFormatter: (params) => dayjs(params.value).format('DD/MM/YYYY'),
+      valueFormatter: (params) => dayjs(params.value).format("DD/MM/YYYY"),
       flex: 0.5,
     },
   ];
@@ -107,23 +87,30 @@ const Student = () => {
     setSelectedRow(value);
     setUpdateButtonDisabled(false);
     console.log(selectedRow);
-  }
+  };
 
   return (
-    <Grid sx={{ height: '100%', width: '100%' }} display="flex" justifyContent="center"
+    <Grid
+      sx={{ height: "100%", width: "100%" }}
+      display="flex"
+      justifyContent="center"
       alignItems="center"
-      flexDirection="row" >
-      <Box width={'95%'} height={'90%'} >
+      flexDirection="column"
+    >
+      <Box width={"95%"} height={"90%"}>
         <Header
           title="TÜM ÖĞRENCİLER"
           subtitle="Okuldaki Kayıtlı Tüm Öğrencilerin Bilgileri"
         />
-        <Grid container marginBottom={'1%'}>
+        <Grid container marginBottom={"1%"}>
           <DataGrid
             rows={students}
             columns={columns}
             onRowClick={(e) => selectRowData(e)}
-            paginationModel={{ pageSize: 15, page: 0 }}
+            initialState={{
+              pagination: { paginationModel: { pageSize: 12 } },
+            }}
+            pageSizeOptions={[12, 24, 36]}
             sx={{
               "& .MuiDataGrid-root": {
                 border: "none",
@@ -154,30 +141,37 @@ const Student = () => {
             }}
           />
         </Grid>
-        <Stack width={'100%'} direction="row" justifyContent="flex-end" spacing={2}>
-          {/* <Link
-          to={{
-            pathname: '/studentDetail',
-            search: `?studentId=${selectedRow?.id}`,
-          }}
+        <Stack
+          width={"100%"}
+          direction="row"
+          justifyContent="flex-end"
+          spacing={2}
         >
-          Güncelle
-        </Link> */}
           <Button
             variant="contained"
             disabled={updateButtonDisabled}
             component={Link}
-            to={{ pathname: '/studentLessonNotes', search: `?studentId=${selectedRow?.id}` }}
+            to={{
+              pathname: "/studentNotes",
+              search: `?studentId=${selectedRow?.id}`,
+            }}
             sx={{ backgroundColor: "#1F2A40" }}
-          >Not Girişi</Button>
+          >
+            Not Girişi
+          </Button>
 
           <Button
             variant="contained"
             disabled={updateButtonDisabled}
             component={Link}
-            to={{ pathname: '/studentDetail', search: `?studentId=${selectedRow?.id}` }}
+            to={{
+              pathname: "/studentDetail",
+              search: `?studentId=${selectedRow?.id}`,
+            }}
             sx={{ backgroundColor: "#1F2A40" }}
-          >Güncelle</Button>
+          >
+            Güncelle
+          </Button>
         </Stack>
       </Box>
     </Grid>
