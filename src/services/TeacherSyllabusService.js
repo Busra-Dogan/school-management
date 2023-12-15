@@ -11,7 +11,7 @@ export default class TeacherSyllabusService {
   updateTeacherSyllabus = (contract) => {
     return createAPIEndpoint(
       ENDPOINTS.TeacherSyllabus,
-      "updateStudentInfo"
+      "updateTeacherSyllabus"
     ).put(contract);
   };
 }

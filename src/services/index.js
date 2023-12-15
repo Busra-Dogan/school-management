@@ -8,6 +8,7 @@ export const ENDPOINTS = {
   StudentLectureNote: "StudentLectureNote",
   Teacher: "Teacher",
   TeacherSyllabus: "TeacherSyllabus",
+  Parameter: "Parameter",
 };
 
 export const createAPIEndpoint = (endpoint, spesificurl, data) => {

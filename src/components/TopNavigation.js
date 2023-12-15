@@ -5,9 +5,11 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RestoreIcon from "@mui/icons-material/Restore";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { Grid, Typography, TextField, Card } from "@mui/material";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-const BottomNavigation1 = () => {
+
+const TopNavigation = () => {
   const [value, setValue] = React.useState(0);
   return (
     <div>
@@ -75,6 +77,23 @@ const BottomNavigation1 = () => {
                 }}
                 icon={<CalendarMonthIcon />}
               />
+              <BottomNavigationAction
+                component={Link}
+                to={{
+                  pathname: "/teacher/teacherAdd",
+                }}
+                label="Öğretmen Ekle"
+                sx={{
+                  "&.MuiBottomNavigationAction-root": {
+                    color: "#e0e0e0",
+                  },
+                  "&.Mui-selected": {
+                    color: "#e0e0e0",
+                    fontWeight: "bold",
+                  },
+                }}
+                icon={<GroupAddIcon />}
+              />
             </BottomNavigation>
           </Grid>
         </Grid>
@@ -83,4 +102,4 @@ const BottomNavigation1 = () => {
   );
 };
 
-export default BottomNavigation1;
+export default TopNavigation;

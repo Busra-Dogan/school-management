@@ -1,8 +1,8 @@
 import { Typography, Box, useTheme } from "@mui/material";
 
-const Header = ({ title, subtitle }) => {
+const Header = ({ title, subtitle, width }) => {
   return (
-    <Box mb="30px" width={'90%'}>
+    <Box mb="30px" width={width}>
       <Typography
         variant="h2"
         color="#e0e0e0"

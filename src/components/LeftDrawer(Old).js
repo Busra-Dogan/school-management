@@ -1,27 +1,17 @@
+import * as React from "react";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { IconButton, Typography, useTheme } from "@mui/material";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import { Typography } from "@mui/material";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MenuItem from "./MenuItem";
 import { styled } from "@mui/material/styles";
-import * as React from "react";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Toolbar from "@mui/material/Toolbar";
-import MenuIcon from "@mui/icons-material/Menu";
-import AppBar from "@mui/material/AppBar";
 
 const LeftDrawer = () => {
   const drawerWidth = 240;
@@ -30,7 +20,6 @@ const LeftDrawer = () => {
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
   }));

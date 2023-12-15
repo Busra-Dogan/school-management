@@ -1,15 +1,16 @@
 import { Routes, Route, Navigate } from "react-router";
-import Class from "./pages/Class/Class";
-import ClassAdd from "./pages/Class/ClassAdd";
-import StudentAdd from "./pages/Student/StudentAdd";
-import Student from "./pages/Student/Student";
+import AllClasses from "./pages/Class/AllClasses";
+import AddClass from "./pages/Class/AddClass";
+import AddStudent from "./pages/Student/AddStudent";
+import AllStudents from "./pages/Student/AllStudents";
 import TeacherSyllabus from "./pages/Teacher/TeacherSyllabus";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import StudentDetail from "./pages/Student/StudentDetail";
-import StudentLessonNotes from "./pages/Student/StudentLessonNotes";
 import StudentNotes from "./pages/Student/StudentNotes";
-import BottomNavigation1 from "./components/BottomNavigation";
+import TopNavigation from "./components/TopNavigation";
+import AddTeacher from "./pages/Teacher/AddTeacher";
+
 function App() {
   const [theme, colorMode] = useMode();
 
@@ -19,25 +20,24 @@ function App() {
         <CssBaseline />
         <div>
           <div className="navigation">
-            <BottomNavigation1></BottomNavigation1>
+            <TopNavigation></TopNavigation>
           </div>
 
           <main className="content">
             <Routes>
-              <Route path="/class" element={<Class />} />
-              <Route path="/class/classAdd" element={<ClassAdd />} />
-              <Route path="/student" element={<Student />} />
-              <Route path="/student/studentAdd" element={<StudentAdd />} />
-              <Route path="/teacherSyllabus" element={<TeacherSyllabus />} />
-              <Route path="/studentDetail" element={<StudentDetail />} />
-              <Route
-                path="/studentLessonNotes"
-                element={<StudentLessonNotes />}
-              />
+              {/* <Route path="/" element={<Dashboard />} /> */}
               <Route
                 path="/"
                 element={<Navigate to="/student" replace={true} />}
               />
+              <Route path="/class" element={<AllClasses />} />
+              <Route path="/class/classAdd" element={<AddClass />} />
+              <Route path="/student" element={<AllStudents />} />
+              <Route path="/student/studentAdd" element={<AddStudent />} />
+              <Route path="/teacherSyllabus" element={<TeacherSyllabus />} />
+              <Route path="/teacher/teacherAdd" element={<AddTeacher />} />
+
+              <Route path="/studentDetail" element={<StudentDetail />} />
               <Route path="/studentNotes" element={<StudentNotes />} />
             </Routes>
           </main>

@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Grid, Button, TextField } from "@mui/material";
+import { Box, Grid, Button, TextField, Stack } from "@mui/material";
 import {
   GridRowModes,
   DataGrid,
   GridActionsCellItem,
   GridRowEditStopReasons,
+  GridOverlay,
 } from "@mui/x-data-grid";
 import Autocomplete from "@mui/material/Autocomplete";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Close";
-import Header from "../../components/Header";
-import TeacherService from "../../services/TeacherService";
-import TeacherSyllabusService from "../../services/TeacherSyllabusService";
-import ClassService from "../../services/ClassService";
+import TeacherService from "../services/TeacherService";
+import TeacherSyllabusService from "../services/TeacherSyllabusService";
+import ClassService from "../services/ClassService";
+import { styled } from "@mui/material/styles";
 
-const TeacherSyllabus = () => {
+const Syllabus = () => {
   const [classes, setClasses] = useState([]);
   const [inputvalue, setInputvalue] = useState(null);
   const [teachers, setTeachers] = useState([]);
@@ -47,7 +48,29 @@ const TeacherSyllabus = () => {
       }
     };
   }, []);
-
+  const StyledGridOverlay = styled("div")(({ theme }) => ({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+    "& .ant-empty-img-1": {
+      fill: theme.palette.mode === "light" ? "#aeb8c2" : "#262626",
+    },
+    "& .ant-empty-img-2": {
+      fill: theme.palette.mode === "light" ? "#f5f5f7" : "#595959",
+    },
+    "& .ant-empty-img-3": {
+      fill: theme.palette.mode === "light" ? "#dce0e6" : "#434343",
+    },
+    "& .ant-empty-img-4": {
+      fill: theme.palette.mode === "light" ? "#fff" : "#1c1c1c",
+    },
+    "& .ant-empty-img-5": {
+      fillOpacity: theme.palette.mode === "light" ? "0.8" : "0.08",
+      fill: theme.palette.mode === "light" ? "#f5f5f5" : "#fff",
+    },
+  }));
   const getTeacherSyllabus = (id) => {
     let teacherSyllabusService = new TeacherSyllabusService();
     teacherSyllabusService
@@ -85,6 +108,15 @@ const TeacherSyllabus = () => {
 
     return updatedRow;
   };
+
+  function customNoRowsOverlay() {
+    return (
+      <StyledGridOverlay>
+        <div>No Rows</div>
+      </StyledGridOverlay>
+    );
+  }
+
   const columns = [
     { field: "day", headerName: "Gün", flex: 0.2 },
     {
@@ -209,50 +241,12 @@ const TeacherSyllabus = () => {
     }
   };
   return (
-    <Grid
-      sx={{ height: "100%", width: "100%" }}
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="row"
-    >
-      <Box sx={{ height: "100%", width: "80%" }}>
-        <Header
-          title="Ders Programı"
-          subtitle="Seçili Öğretmenin Ders Programının Görüntülenmesi"
-        />
+    <Grid height="300px">
+      <Box>
         <Grid container spacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={6} md={3}>
-            <Autocomplete
-              id="combo-box-demo"
-              fullWidth
-              options={teachers?.map((option) => option.nameSurname)}
-              renderInput={(params) => <TextField {...params} label="Sınıfı" />}
-              onInputChange={(event, newInputValue) => {
-                setInputvalue(
-                  teachers.find((obj) => {
-                    return obj.nameSurname === newInputValue;
-                  })
-                );
-                getTeacherSyllabus();
-              }}
-            ></Autocomplete>
-          </Grid>
-          <Grid item xs={6} md={3} justifyContent="center">
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{ backgroundColor: "#1F2A40", height: "100%" }}
-              onClick={() => {
-                getTeacherSyllabus(inputvalue.id);
-              }}
-            >
-              Ders Programını Getir
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={12} visibility={visibleDataGrid}>
+          <Grid item xs={12} md={12}>
             <DataGrid
-              rows={teacherSyllabus}
+              rows={[]}
               columns={columns}
               editMode="row"
               rowModesModel={rowModesModel}
@@ -260,6 +254,9 @@ const TeacherSyllabus = () => {
               onRowEditStop={handleRowEditStop}
               processRowUpdate={processRowUpdate}
               onRowClick={(e) => selectRowData(e)}
+              slots={{
+                noRowsOverlay: customNoRowsOverlay,
+              }}
               sx={{
                 "& .MuiDataGrid-root": {
                   border: "none",
@@ -295,4 +292,5 @@ const TeacherSyllabus = () => {
     </Grid>
   );
 };
-export default TeacherSyllabus;
+
+export default Syllabus;

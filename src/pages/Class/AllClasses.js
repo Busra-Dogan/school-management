@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { DataGridPro } from '@mui/x-data-grid-pro';
+import { DataGridPro } from "@mui/x-data-grid-pro";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
 import ClassService from "../../services/ClassService";
 import axios from "axios";
 
-const Class = () => {
+const AllClasses = () => {
   const [classes, setClasses] = useState([]);
   const [cancelToken, setCancelToken] = useState(null);
 
@@ -63,14 +63,14 @@ const Class = () => {
       flex: 0.5,
     },
   ];
+
   return (
     <Box m="20px" width={1500} height={1000}>
       <Header
         title="ALL CLASSES"
         subtitle="List of All Classes In the School"
       />
-      <Grid container
-      >
+      <Grid container>
         <DataGrid
           rows={classes}
           columns={columns}
@@ -78,7 +78,7 @@ const Class = () => {
           sx={{
             "& .MuiDataGrid-root": {
               border: "none",
-              rowsPerPageOptions:[5, 10, 20]
+              rowsPerPageOptions: [5, 10, 20],
             },
             "& .MuiDataGrid-cell": {
               borderBottom: "none",
@@ -110,4 +110,4 @@ const Class = () => {
   );
 };
 
-export default Class;
+export default AllClasses;

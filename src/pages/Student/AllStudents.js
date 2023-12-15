@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid, Button } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import { DataGridPro } from "@mui/x-data-grid-pro";
 import Header from "../../components/Header";
-import { useTheme, ThemeProvider, createTheme } from "@mui/material";
-import ClassService from "../../services/ClassService";
 import axios from "axios";
 import StudentService from "../../services/StudentService";
 import dayjs from "dayjs";
 import Stack from "@mui/material/Stack";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Alert from "@mui/material/Alert";
-import Collapse from "@mui/material/Collapse";
 
 const Student = () => {
   const [students, setStudents] = useState([]);
@@ -99,8 +93,8 @@ const Student = () => {
     >
       <Box width={"95%"} height={"90%"}>
         <Header
-          title="TÜM ÖĞRENCİLER"
-          subtitle="Okuldaki Kayıtlı Tüm Öğrencilerin Bilgileri"
+          title="Tüm Öğrenciler"
+          subtitle="Okuldaki kayıtlı tüm öğrencilerin bilgileri listelenmektedir. Yeni öğrenci tanımı için üst menüdeki Öğrenci Ekle'ye tıklayabilirsiniz."
         />
         <Grid container marginBottom={"1%"}>
           <DataGrid
@@ -159,7 +153,6 @@ const Student = () => {
           >
             Not Girişi
           </Button>
-
           <Button
             variant="contained"
             disabled={updateButtonDisabled}
@@ -171,6 +164,13 @@ const Student = () => {
             sx={{ backgroundColor: "#1F2A40" }}
           >
             Güncelle
+          </Button>
+          <Button
+            variant="contained"
+            disabled={updateButtonDisabled}
+            sx={{ backgroundColor: "#1F2A40" }}
+          >
+            Sil
           </Button>
         </Stack>
       </Box>

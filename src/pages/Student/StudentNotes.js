@@ -107,11 +107,17 @@ const StudentNotes = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      flexDirection="row"
+      flexDirection="column"
     >
       <Box width={"95%"} height={"90%"}>
-        <Header title={studentName} subtitle={className + " Sınıfı"} />
-        <Grid container marginBottom={"1%"} width={"75%"}>
+        <Header
+          title={studentName}
+          subtitle={
+            className +
+            " Sınıfı - Not bilgilerini girdikten sonra Notları Güncelle butonuna tıklayarak notları güncelleyip ortalamayı görüntüleyebilirsiniz."
+          }
+        />
+        <Grid container marginBottom={"1%"}>
           <DataGrid
             rows={studentNotes}
             columns={columns}
@@ -121,18 +127,31 @@ const StudentNotes = () => {
             showColumnVerticalBorder={true}
             showCellRightBorder={true}
             sx={{
+              "& .MuiDataGrid-root": {
+                border: "none",
+              },
+              "& .MuiDataGrid-cell": {
+                borderBottom: "none",
+              },
               "& .name-column--cell": {
                 color: "#94e2cd",
               },
               "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: "#94e2cd",
+                backgroundColor: "#a4a9fc",
                 borderBottom: "none",
               },
               "& .MuiDataGrid-virtualScroller": {
                 backgroundColor: "#f2f0f0",
               },
+              "& .MuiDataGrid-footerContainer": {
+                borderTop: "none",
+                backgroundColor: "#a4a9fc",
+              },
               "& .MuiCheckbox-root": {
                 color: `#1e5245 !important`,
+              },
+              "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+                color: `#141414 !important`,
               },
               "& .MuiDataGrid-cellContent": {
                 fontWeight: "bold",
@@ -141,10 +160,11 @@ const StudentNotes = () => {
           />
         </Grid>
         <Stack
-          width={"75%"}
+          width={"100%"}
           direction="row"
           justifyContent="flex-end"
           spacing={2}
+          sx={{ marginBottom: "10px" }}
         >
           <Button
             variant="contained"
@@ -155,7 +175,7 @@ const StudentNotes = () => {
               updateStudentNotes();
             }}
           >
-            Kaydet
+            NOTLARI GÜNCELLE
           </Button>
         </Stack>
       </Box>
