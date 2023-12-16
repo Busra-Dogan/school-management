@@ -77,7 +77,7 @@ const TopNavigation = () => {
                 }}
                 icon={<CalendarMonthIcon />}
               />
-              <BottomNavigationAction
+              {/* <BottomNavigationAction
                 component={Link}
                 to={{
                   pathname: "/teacher/teacherAdd",
@@ -93,7 +93,7 @@ const TopNavigation = () => {
                   },
                 }}
                 icon={<GroupAddIcon />}
-              />
+              /> */}
             </BottomNavigation>
           </Grid>
         </Grid>

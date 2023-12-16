@@ -165,13 +165,13 @@ const Student = () => {
           >
             Güncelle
           </Button>
-          <Button
+          {/* <Button
             variant="contained"
-            disabled={updateButtonDisabled}
-            sx={{ backgroundColor: "#1F2A40" }}
+            disabled={updatefalsButtonDisabled}
+            sx={{ backgroundColor: "#1F2A40" }}ü
           >
             Sil
-          </Button>
+          </Button> */}
         </Stack>
       </Box>
     </Grid>
